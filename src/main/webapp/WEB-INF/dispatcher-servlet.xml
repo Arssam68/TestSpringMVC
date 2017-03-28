@@ -12,16 +12,9 @@
 
     <mvc:default-servlet-handler/>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
-
-    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
-
-    <bean name="/userRegistration.htm" class="ru.arssam.mvctest.controllers.HelloWorldController" />
-    <bean name="/userSuccess.htm" class="ru.arssam.mvctest.controllers.HelloWorldController" />
-
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".jsp"/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
     </bean>
 
 </beans>
