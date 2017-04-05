@@ -58,9 +58,9 @@
     <table class="tg">
         <tr>
             <th width="80">ID</th>
-            <th width="120">Name</th>
-            <th width="120">Age</th>
-            <th width="120">IsAdmin</th>
+            <th width="160">Name</th>
+            <th width="80">Age</th>
+            <th width="80">IsAdmin</th>
             <th width="120">CreatedDate</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>

@@ -7,9 +7,9 @@ CREATE TABLE IF NOT EXISTS `test`.`user` (
 `IS_ADMIN` BIT(1) NOT NULL DEFAULT false,
 `CREATED_DATE` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Andrey Pavlov', '36');
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Nikolay Ivanov', '24');
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Petr Dmitriev', '41');
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Dmitriy Petrov', '21');
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Ivan Nikolaev', '48');
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Pavel Andreev', '41');
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Andrey Pavlov', '36', FALSE );
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Nikolay Ivanov', '24', TRUE );
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Petr Dmitriev', '41', FALSE );
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Dmitriy Petrov', '21', FALSE );
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Ivan Nikolaev', '48',TRUE );
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Pavel Andreev', '41', FALSE );

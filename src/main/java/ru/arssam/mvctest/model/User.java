@@ -22,6 +22,7 @@ public class User {
 
     @Column(name = "CREATED_DATE")
     private Timestamp createdDate;
+    private String isAdmin;
 
     public int getId() {
         return id;
@@ -47,11 +48,9 @@ public class User {
         this.age = age;
     }
 
-    public Boolean isAdmin() {
-        return admin;
-    }
+    public Boolean getIsAdmin() { return admin; }
 
-    public void setAdmin(Boolean admin) {
+    public void setIsAdmin(Boolean admin) {
         this.admin = admin;
     }
 
