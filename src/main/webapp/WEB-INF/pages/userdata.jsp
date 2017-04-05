@@ -53,8 +53,8 @@
 
 <table class="tg">
   <tr>
-    <th width="80">ID</th>
-    <th width="160">Name</th>
+    <th width="60">ID</th>
+    <th width="200">Name</th>
     <th width="80">Age</th>
     <th width="80">IsAdmin</th>
     <th width="120">CreatedDate</th>

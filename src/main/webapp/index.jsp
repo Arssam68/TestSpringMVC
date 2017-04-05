@@ -5,7 +5,7 @@
   <title>Javarush Test Work</title>
 </head>
 <body>
-<h3>Git + Mavem + Hibernate + SpringMVC CRUD simple application</h3>
+<h3>Git + Maven + MySQL + Hibernate + SpringMVC CRUD simple application</h3>
 <br/>
 <a href="<c:url value="/users"/>" target="_blank">Users list</a>
 <br/>
