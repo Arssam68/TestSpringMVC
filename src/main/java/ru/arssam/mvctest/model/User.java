@@ -22,7 +22,6 @@ public class User {
 
     @Column(name = "CREATED_DATE")
     private Timestamp createdDate;
-    private String isAdmin;
 
     public int getId() {
         return id;
