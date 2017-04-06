@@ -1,12 +1,16 @@
 package ru.arssam.mvctest.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.arssam.mvctest.model.User;
 
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -36,7 +40,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void removeUser(int id) {
         Session session = sessionFactory.getCurrentSession();
-        User user = session.load(User.class, new Integer(id));
+        User user = session.load(User.class, id);
 
         if(user != null){
             session.delete(user);
@@ -47,9 +51,19 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        User user = session.load(User.class, new Integer(id));
+        User user = session.load(User.class, id);
         logger.info("User successfully loaded. User details: " + user);
         return user;
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Query userNameQuery = session.createQuery("FROM User WHERE name = :paramName");
+        userNameQuery.setParameter("paramName", name);
+        List<User> users = userNameQuery.getResultList();
+        logger.info("User successfully loaded. User details: " + users.get(0));
+        return users.get(0);
     }
 
     @Override

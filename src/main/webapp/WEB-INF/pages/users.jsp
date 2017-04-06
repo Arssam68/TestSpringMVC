@@ -41,9 +41,6 @@
             background-color: #f0f0f0;
         }
 
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
     </style>
 </head>
 <body>
@@ -68,7 +65,7 @@
         <c:forEach items="${listUsers}" var="user">
             <tr>
                 <td>${user.id}</td>
-                <td><a href="/userdata/${user.id}" target="_blank">${user.name}</a></td>
+                <td>${user.name}</a></td>
                 <td>${user.age}</td>
                 <td>${user.isAdmin}</td>
                 <td>${user.createdDate}</td>
@@ -80,7 +77,7 @@
 </c:if>
 
 
-<h1>Add a User</h1>
+<h1>Add User</h1>
 
 <c:url var="addAction" value="/users/add"/>
 
@@ -149,6 +146,32 @@
                     <input type="submit"
                            value="<spring:message text="Add User"/>"/>
                 </c:if>
+            </td>
+        </tr>
+    </table>
+</form:form>
+
+
+<h1>Find User by Name</h1>
+
+<c:url var="addAction" value="/users/find"/>
+
+<form:form action="${addAction}" commandName="user">
+    <table>
+        <tr>
+            <td>
+                <form:label path="name">
+                    <spring:message text="Name"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"
+                       value="<spring:message text="Find User"/>"/>
             </td>
         </tr>
     </table>

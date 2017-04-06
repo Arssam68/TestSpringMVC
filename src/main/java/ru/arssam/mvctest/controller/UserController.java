@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
     private UserService userService;
 
-    @Autowired(required = true)
+    @Autowired
     @Qualifier(value = "userService")
     public void setBookService(UserService userService) {
         this.userService = userService;
@@ -38,6 +38,13 @@ public class UserController {
         }
 
         return "redirect:/users";
+    }
+
+    @RequestMapping(value = "/users/find", method = RequestMethod.POST)
+    public String findUser(@ModelAttribute("user") User user, Model model){
+        model.addAttribute("user", userService.getUserByName(user.getName()));
+
+        return "userdata";
     }
 
     @RequestMapping("/remove/{id}")
