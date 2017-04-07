@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>User ${user.name} Data</title>
+    <title>Users Data</title>
 
     <style type="text/css">
         .tg {
@@ -45,7 +45,7 @@
 
 </head>
 <body>
-<h1>User ${user.name} Details</h1>
+<h1>Users Details</h1>
 
 <table class="tg">
     <tr>
@@ -55,13 +55,15 @@
         <th width="80">IsAdmin</th>
         <th width="120">CreatedDate</th>
     </tr>
-    <tr>
-        <td>${user.id}</td>
-        <td>${user.name}</td>
-        <td>${user.age}</td>
-        <td>${user.isAdmin}</td>
-        <td>${user.createdDate}</td>
-    </tr>
+    <c:forEach items="${users}" var="user">
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</a></td>
+            <td>${user.age}</td>
+            <td>${user.isAdmin}</td>
+            <td>${user.createdDate}</td>
+        </tr>
+    </c:forEach>
 </table>
 </body>
 </html>

@@ -17,12 +17,12 @@ public class UserController {
 
     @Autowired
     @Qualifier(value = "userService")
-    public void setBookService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
-    public String listBooks(Model model){
+    public String listUsers(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.listUsers());
 
@@ -42,7 +42,7 @@ public class UserController {
 
     @RequestMapping(value = "/users/find", method = RequestMethod.POST)
     public String findUser(@ModelAttribute("user") User user, Model model){
-        model.addAttribute("user", userService.getUserByName(user.getName()));
+        model.addAttribute("users", userService.getUsersByName(user.getName()));
 
         return "userdata";
     }
@@ -60,12 +60,5 @@ public class UserController {
         model.addAttribute("listUsers", userService.listUsers());
 
         return "users";
-    }
-
-    @RequestMapping("userdata/{id}")
-    public String userData(@PathVariable("id") int id, Model model){
-        model.addAttribute("user", userService.getUserById(id));
-
-        return "userdata";
     }
 }

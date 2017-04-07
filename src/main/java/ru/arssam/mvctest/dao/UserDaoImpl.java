@@ -1,10 +1,7 @@
 package ru.arssam.mvctest.dao;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Expression;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,13 +54,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByName(String name) {
+    public List<User> getUsersByName(String username) {
         Session session = sessionFactory.getCurrentSession();
-        Query userNameQuery = session.createQuery("FROM User WHERE name = :paramName");
-        userNameQuery.setParameter("paramName", name);
+        Query userNameQuery = session.createQuery("from User WHERE name = :paramName");
+        userNameQuery.setParameter("paramName", username);
         List<User> users = userNameQuery.getResultList();
-        logger.info("User successfully loaded. User details: " + users.get(0));
-        return users.get(0);
+
+        for(User user: users){
+            logger.info("Users find list: " + user);
+        }
+
+        return users;
     }
 
     @Override

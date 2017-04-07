@@ -13,7 +13,7 @@ public interface UserService {
 
         User getUserById(int id);
 
-        User getUserByName(String name);
+        List<User> getUsersByName(String name);
 
         List<User> listUsers();
 }

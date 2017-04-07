@@ -65,7 +65,7 @@
         <c:forEach items="${listUsers}" var="user">
             <tr>
                 <td>${user.id}</td>
-                <td>${user.name}</a></td>
+                <td>${user.name}</td>
                 <td>${user.age}</td>
                 <td>${user.isAdmin}</td>
                 <td>${user.createdDate}</td>
@@ -149,6 +149,7 @@
             </td>
         </tr>
     </table>
+
 </form:form>
 
 
