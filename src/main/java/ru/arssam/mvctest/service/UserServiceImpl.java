@@ -47,7 +47,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<User> listUsers() {
-        return userDao.listUsers();
+    public List<User> listUsers(int firstResult, int maxResult) {
+        return userDao.listUsers(firstResult, maxResult);
+    }
+
+    @Override
+    public int count() {
+        return userDao.count();
     }
 }

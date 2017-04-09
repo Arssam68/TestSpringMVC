@@ -15,5 +15,7 @@ public interface UserService {
 
         List<User> getUsersByName(String name);
 
-        List<User> listUsers();
+        List<User> listUsers(int firstResult, int maxResult);
+
+        int count();
 }

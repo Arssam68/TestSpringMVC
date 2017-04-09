@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
     private UserService userService;
+    private int pageSize = 3;
+    private Integer offset;
+    private Integer lastPageNumber;
 
     @Autowired
     @Qualifier(value = "userService")
@@ -22,9 +25,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
-    public String listUsers(Model model){
+
+    public String listUsers(@ModelAttribute("page") Integer pageNumber, Model model){
+        offset = (pageNumber - 1) * pageSize;
+        lastPageNumber = userService.count() / pageSize;
+        if (userService.count() % pageSize != 0) lastPageNumber++;
+
         model.addAttribute("user", new User());
-        model.addAttribute("listUsers", userService.listUsers());
+        model.addAttribute("lastPage", lastPageNumber);
+        model.addAttribute("listUsers", userService.listUsers(offset, pageSize));
 
         return "users";
     }
@@ -57,7 +66,7 @@ public class UserController {
     @RequestMapping("edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model){
         model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("listUsers", userService.listUsers());
+        model.addAttribute("listUsers", userService.listUsers(0, pageSize));
 
         return "users";
     }

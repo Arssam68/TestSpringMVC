@@ -2,6 +2,7 @@ package ru.arssam.mvctest.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,9 @@ public class UserDaoImpl implements UserDao {
         Session session = sessionFactory.getCurrentSession();
         Query userNameQuery = session.createQuery("from User WHERE name = :paramName");
         userNameQuery.setParameter("paramName", username);
+        userNameQuery.setFirstResult(0);
+        userNameQuery.setMaxResults(3);
+
         List<User> users = userNameQuery.getResultList();
 
         for(User user: users){
@@ -68,14 +72,30 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> listUsers() {
+    public List<User> listUsers(int firstResult, int maxResult) {
+
         Session session = sessionFactory.getCurrentSession();
-        List<User> userList = session.createQuery("from User").list();
+
+        //Query countQuery = session.createQuery("from User");
+        //Long countResults = (Long) countQuery.uniqueResult();
+
+        Query selectQuery = session.createQuery("from User");
+        selectQuery.setFirstResult(firstResult);
+        selectQuery.setMaxResults(maxResult);
+        List<User> userList = selectQuery.getResultList();
+
+        //List<User> userList = session.createQuery("from User").list();
 
         for(User user: userList){
             logger.info("User list: " + user);
         }
 
         return userList;
+    }
+
+    @Override
+    public int count(){
+        return sessionFactory.getCurrentSession().createQuery("from User").list().size();
+
     }
 }
