@@ -51,31 +51,39 @@
 
 <h1>Users List</h1>
 
-<c:if test="${!empty listUsers}">
-    <table class="tg">
-        <tr>
-            <th width="60">ID</th>
-            <th width="200">Name</th>
-            <th width="80">Age</th>
-            <th width="80">IsAdmin</th>
-            <th width="120">CreatedDate</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
-        </tr>
-        <c:forEach items="${listUsers}" var="user">
+<div class="container">
+    <c:if test="${!empty listUsers}">
+        <table class="tg">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.age}</td>
-                <td>${user.isAdmin}</td>
-                <td>${user.createdDate}</td>
-                <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
+                <th width="60">ID</th>
+                <th width="200">Name</th>
+                <th width="80">Age</th>
+                <th width="80">IsAdmin</th>
+                <th width="120">CreatedDate</th>
+                <th width="60">Edit</th>
+                <th width="60">Delete</th>
             </tr>
-        </c:forEach>
-    </table>
-</c:if>
-
+            <c:forEach items="${listUsers}" var="user">
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.age}</td>
+                    <td>${user.isAdmin}</td>
+                    <td>${user.createdDate}</td>
+                    <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
+                    <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+    <div class="pagination">
+        <ul>
+            <li><c:forEach begin="1" end="${lastPage}" var="p">
+                <a href="<c:url value="/users" ><c:param name="page" value="${p}"/>${p}</c:url>">${p}</a>
+            </c:forEach></li>
+        </ul>
+    </div>
+</div>
 
 <h1>Add User</h1>
 

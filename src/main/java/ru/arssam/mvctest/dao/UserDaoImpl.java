@@ -2,7 +2,6 @@ package ru.arssam.mvctest.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +95,5 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int count(){
         return sessionFactory.getCurrentSession().createQuery("from User").list().size();
-
     }
 }

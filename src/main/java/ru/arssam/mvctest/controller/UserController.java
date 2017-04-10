@@ -1,20 +1,17 @@
 package ru.arssam.mvctest.controller;
 
+import org.springframework.web.bind.annotation.*;
 import ru.arssam.mvctest.model.User;
 import ru.arssam.mvctest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
     private UserService userService;
-    private int pageSize = 3;
+    private int pageSize = 5;
     private Integer offset;
     private Integer lastPageNumber;
 
@@ -26,8 +23,9 @@ public class UserController {
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
 
-    public String listUsers(@ModelAttribute("page") Integer pageNumber, Model model){
-        offset = (pageNumber - 1) * pageSize;
+    public String listUsers(@RequestAttribute(value = "page", required = false) Integer page, Model model){
+        if (page == null) page = 1;
+        offset = (page - 1) * pageSize;
         lastPageNumber = userService.count() / pageSize;
         if (userService.count() % pageSize != 0) lastPageNumber++;
 
