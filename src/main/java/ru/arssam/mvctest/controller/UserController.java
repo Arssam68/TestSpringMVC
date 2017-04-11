@@ -23,7 +23,7 @@ public class UserController {
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
 
-    public String listUsers(@RequestAttribute(value = "page", required = false) Integer page, Model model){
+    public String listUsers(@RequestParam(value = "page", required = false) Integer page, Model model){
         if (page == null) page = 1;
         offset = (page - 1) * pageSize;
         lastPageNumber = userService.count() / pageSize;
